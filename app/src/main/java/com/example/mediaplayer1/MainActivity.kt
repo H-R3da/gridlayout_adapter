@@ -11,14 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
     private lateinit var mediaPlayer: MediaPlayer
     val arrayList = ArrayList<String>()
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val recyclerView : RecyclerView = findViewById(R.id.recyclerView)
-        val adaptor = Adaptor(fetchData())
+        val adaptor = Adaptor(this,fetchData())
         recyclerView.layoutManager = GridLayoutManager(this,3)
         recyclerView.adapter = adaptor
     }
