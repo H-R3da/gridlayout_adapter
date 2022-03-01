@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
     val arrayList = ArrayList<String>()
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
