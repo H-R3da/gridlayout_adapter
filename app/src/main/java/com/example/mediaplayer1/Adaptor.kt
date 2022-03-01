@@ -1,6 +1,7 @@
 package com.example.mediaplayer1
 
 import android.content.Context
+import android.media.MediaPlayer
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class Adaptor(private val context: Context, private val item : ArrayList<String>) : RecyclerView.Adapter <Adaptor.ViewHolder>(){
+class Adaptor(private val context: Context, private val item : ArrayList<String>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter <Adaptor.ViewHolder>(){
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val button  : Button = itemView.findViewById(R.id.button)
 
@@ -21,9 +22,13 @@ class Adaptor(private val context: Context, private val item : ArrayList<String>
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.button.text = item[position]
         holder.button.setOnClickListener {
-            Toast.makeText(context,item[position],Toast.LENGTH_SHORT).show()
+            if(mediaPlayer != null) {
+                mediaPlayer?.release()
+            }
+            var resId : Int = context.resources.getIdentifier(item[position],"raw", context.packageName);
+            mediaPlayer = MediaPlayer.create(context, resId)
+            mediaPlayer?.start()
         }
     }
 
