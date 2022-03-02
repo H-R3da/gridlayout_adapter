@@ -18,18 +18,20 @@ class MainActivity : AppCompatActivity() {
 
         val recyclerView : RecyclerView = findViewById(R.id.recyclerView)
         val adaptor = Adaptor(this,fetchData(),mediaPlayer)
-        recyclerView.layoutManager = GridLayoutManager(this,3)
+        recyclerView.layoutManager = GridLayoutManager(this,4)
         recyclerView.adapter = adaptor
     }
 
     private fun fetchData() : ArrayList<String> {
-        val fields: Array<Field> = com.example.mediaplayer1.R.raw::class.java.fields
-        val item = ArrayList<String>()
+        val fields: Array<Field> = R.raw::class.java.fields
+        var item = mutableListOf<String>()
 
         for (i in 0 until 30) {
-            item.add(fields[i-((i/3).toInt()*3)].name)
+            item.add(fields[i-((i/4).toInt()*4)].name)
         }
 
-        return item
+        var item2 = item.filter{ s -> s.startsWith("dizzydros")}
+
+        return item2
     }
 }
