@@ -11,10 +11,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class Adaptor(private val context: Context, private val item : ArrayList<String>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter <Adaptor.ViewHolder>(){
+class Adaptor(private val context: Context, private val item : ArrayList<RapperData>, private var mediaPlayer: MediaPlayer?) : RecyclerView.Adapter <Adaptor.ViewHolder>(){
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val button  : Button = itemView.findViewById(R.id.button)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,7 +25,7 @@ class Adaptor(private val context: Context, private val item : ArrayList<String>
             if(mediaPlayer != null) {
                 mediaPlayer?.release()
             }
-            var resId : Int = context.resources.getIdentifier(item[position],"raw", context.packageName);
+            var resId : Int = context.resources.getIdentifier(item[position].adlibs[0],"raw", context.packageName);
             mediaPlayer = MediaPlayer.create(context, resId)
             mediaPlayer?.start()
         }
